@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:tiktok_clone/home/upload_video/upload_form.dart';
 
 class UploadVideoScreen extends StatefulWidget {
   const UploadVideoScreen({super.key});
@@ -9,6 +13,19 @@ class UploadVideoScreen extends StatefulWidget {
 }
 
 class _UploadVideoScreenState extends State<UploadVideoScreen> {
+  getVideoFile(ImageSource source) async {
+    final videoFile = await ImagePicker().pickVideo(source: source);
+
+    if (videoFile != null) {
+      Get.to(
+        UploadForm(
+          videoFile: File(videoFile.path),
+          videoPath: videoFile.path,
+        ),
+      );
+    }
+  }
+
   displayDialogBox() {
     return showDialog(
       context: context,
@@ -16,7 +33,11 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
         return SimpleDialog(
           children: [
             SimpleDialogOption(
-              onPressed: () {},
+              onPressed: () {
+                getVideoFile(
+                  ImageSource.gallery,
+                );
+              },
               child: Row(
                 children: const [
                   Icon(
@@ -37,7 +58,11 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
               ),
             ),
             SimpleDialogOption(
-              onPressed: () {},
+              onPressed: () {
+                 getVideoFile(
+                  ImageSource.camera,
+                );
+              },
               child: Row(
                 children: const [
                   Icon(
