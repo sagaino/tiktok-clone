@@ -15,9 +15,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final AuthenticationController controller = Get.find<AuthenticationController>();
-  final AuthenticationController controller =
-      Get.put(AuthenticationController());
+  final AuthenticationController controller = Get.find<AuthenticationController>();
+  // final AuthenticationController controller =
+  //     Get.put(AuthenticationController());
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   // bool showProgressBar = false;
@@ -191,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.delete<AuthenticationController>();
+                      // Get.delete<AuthenticationController>();
                       Get.off(
                         () => const RegisterScreen(),
                       );

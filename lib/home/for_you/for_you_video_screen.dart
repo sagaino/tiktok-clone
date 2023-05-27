@@ -19,6 +19,7 @@ class _ForYourVideoScreenState extends State<ForYourVideoScreen> {
       body: Obx(() {
         return PageView.builder(
           scrollDirection: Axis.vertical,
+          physics: const CustomPageViewScrollPhysics(),
           itemCount: controllerVideos.forYouAllVideoList.length,
           controller: PageController(
             initialPage: 0,
@@ -38,4 +39,21 @@ class _ForYourVideoScreenState extends State<ForYourVideoScreen> {
       }),
     );
   }
+}
+
+class CustomPageViewScrollPhysics extends ScrollPhysics {
+  const CustomPageViewScrollPhysics({ScrollPhysics? parent})
+      : super(parent: parent);
+
+  @override
+  CustomPageViewScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomPageViewScrollPhysics(parent: buildParent(ancestor));
+  }
+
+  @override
+  SpringDescription get spring => const SpringDescription(
+        mass: 80,
+        stiffness: 100,
+        damping: 1,
+      );
 }

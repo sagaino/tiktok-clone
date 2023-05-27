@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp().then((value) {
-    // Get.put(AuthenticationController());
+    Get.put(AuthenticationController());
   });
   runApp(const MyApp());
 }

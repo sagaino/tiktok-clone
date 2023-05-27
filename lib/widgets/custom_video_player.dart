@@ -17,24 +17,25 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   @override
   void initState() {
+    super.initState();
     print("init custom video player");
+    print("init custom video player : ${widget.videoFile}");
     playerController = VideoPlayerController.network(widget.videoFile)
       ..initialize().then(
         (value) {
           playerController!.play();
           playerController!.setLooping(true);
           playerController!.setVolume(2);
+          setState(() {});
         },
       );
-
-    super.initState();
   }
 
   @override
   void dispose() {
+    super.dispose();
     print("dispose custom video player");
     playerController!.dispose();
-    super.dispose();
   }
 
   @override
